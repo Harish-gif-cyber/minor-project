@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Weather App | Real-Time Forecasts</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/weather.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand-logo" aria-label="Home">
+                <span class="logo-icon">🌤️</span>
+                <span>Weather<span class="brand-highlight">Pro</span></span>
+            </a>
+
+            <nav class="nav-tab-group" role="navigation">
+                <a href="index.html" class="nav-tab-btn">⚡ Unified Hub</a>
+                <a href="weather.html" class="nav-tab-btn active">🌤️ Weather</a>
+                <a href="movies.html" class="nav-tab-btn">🎬 Movies</a>
+            </nav>
+
+            <div class="header-links">
+                <a href="movies.html" class="icon-link-btn" title="Go to Movie App">
+                    <span>🎬</span> Movie App &rarr;
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container app-main">
+        <section id="weather-app-root" class="app-view theme-clear">
+            <div class="app-hero-header">
+                <span class="app-badge-pill">Open-Meteo REST API</span>
+                <h1 class="app-hero-title">Live Weather Forecast</h1>
+                <p class="app-hero-desc">Accurate real-time temperatures, wind speed, atmospheric conditions, and 5-day outlook for any global location.</p>
+            </div>
+
+            <div class="weather-controls-bar">
+                <form id="weather-search-form" class="weather-search-box" role="search">
+                    <button type="button" id="weather-geo-btn" class="icon-control-btn" title="Use Current GPS Location" aria-label="Locate me">
+                        <span>🎯</span>
+                    </button>
+                    <input type="text" id="weather-city-input" class="search-field" placeholder="Search city (e.g., London, Tokyo, New York)..." autocomplete="off" required>
+                    <button type="submit" class="search-action-btn">
+                        <span>🔍</span> Search
+                    </button>
+                </form>
+
+                <button type="button" id="weather-unit-toggle" class="unit-toggle-btn" title="Switch temperature unit">
+                    °F
+                </button>
+            </div>
+
+            
+            <div id="weather-recent-tags" class="recent-cities-container"></div>
+
+           
+            <div id="weather-error" class="hidden"></div>
+
+            <div id="weather-loading" class="loading-indicator hidden">
+                <div class="spinner"></div>
+                <p>Fetching weather telemetry...</p>
+            </div>
+
+           
+            <div id="weather-card-container"></div>
+
+           
+            <div id="weather-forecast-container"></div>
+        </section>
+    </main>
+
+    
+    <div id="toast-container" class="toast-container"></div>
+
+    
+    <footer class="main-footer">
+        <div class="container footer-inner">
+            <p><strong>Weather Application</strong> &bull; REST API Integration</p>
+            <p>Built with ES6+ Async/Await, Fetch API, and Dynamic DOM Manipulation.</p>
+        </div>
+    </footer>
+
+    
+    <script type="module">
+        import { WeatherApp } from './js/weatherApp.js';
+        document.addEventListener('DOMContentLoaded', () => {
+            new WeatherApp('weather-app-root');
+        });
+    </script>
+</body>
+</html>

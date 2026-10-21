@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie & Show Explorer | OMDb REST API</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/movies.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand-logo" aria-label="Home">
+                <span class="logo-icon">🎬</span>
+                <span>Cinema<span class="brand-highlight">Scope</span></span>
+            </a>
+
+            <nav class="nav-tab-group" role="navigation">
+                <a href="index.html" class="nav-tab-btn">⚡ Unified Hub</a>
+                <a href="weather.html" class="nav-tab-btn">🌤️ Weather</a>
+                <a href="movies.html" class="nav-tab-btn active">🎬 Movies</a>
+            </nav>
+
+            <div class="header-links">
+                <a href="weather.html" class="icon-link-btn" title="Go to Weather App">
+                    <span>🌤️</span> Weather App &rarr;
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container app-main">
+        <section id="movie-app-root" class="app-view">
+            <div class="app-hero-header">
+                <span class="app-badge-pill">Public Movie Database API</span>
+                <h1 class="app-hero-title">Movie & Series Explorer</h1>
+                <p class="app-hero-desc">Discover movies, ratings, genres, directors, cast, and manage your personalized watchlist.</p>
+            </div>
+
+            <!-- Movie Search Form & Filter Bar -->
+            <form id="movie-search-form" class="movie-controls-bar" role="search">
+                <div class="movie-search-box">
+                    <input type="text" id="movie-search-input" class="search-field" placeholder="Search movie or TV show title..." autocomplete="off" value="Inception" required>
+                    <button type="submit" class="search-action-btn btn-movie-search">
+                        <span>🔍</span> Search
+                    </button>
+                </div>
+
+                <!-- Media Type Filter -->
+                <select id="movie-type-filter" class="type-filter-select" aria-label="Filter media type">
+                    <option value="">All Categories</option>
+                    <option value="movie">Movies Only</option>
+                    <option value="series">TV Series Only</option>
+                    <option value="episode">Episodes</option>
+                </select>
+
+                <!-- Custom API Key Settings Button -->
+                <button type="button" id="movie-api-key-btn" class="btn-api-key" title="Configure Custom OMDb API Key" aria-label="API Settings">
+                    ⚙️
+                </button>
+            </form>
+
+            <!-- Sub Toolbar: Results Count & Watchlist Toggle -->
+            <div class="movie-sub-bar">
+                <h3 id="movie-results-count" class="results-count-heading">Searching...</h3>
+                <div class="sub-bar-actions">
+                    <button type="button" id="movie-view-watchlist-btn" class="btn-watchlist-view">
+                        <span>★</span> Watchlist
+                        <span class="badge-count" id="watchlist-badge-count">0</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Error Banner -->
+            <div id="movie-error" class="hidden"></div>
+
+            <!-- Loading Spinner -->
+            <div id="movie-loading" class="loading-indicator hidden">
+                <div class="spinner"></div>
+                <p>Retrieving movie records...</p>
+            </div>
+
+            <!-- Movie Cards Grid -->
+            <div id="movie-grid-container" class="movie-grid"></div>
+
+            <!-- Pagination / Load More Button -->
+            <div class="load-more-wrapper">
+                <button type="button" id="movie-load-more" class="btn-load-more hidden">
+                    Load More Results &darr;
+                </button>
+            </div>
+
+            <!-- Movie Detail Modal Dialog -->
+            <div id="movie-detail-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-label="Movie Details">
+                <div class="modal-container">
+                    <button type="button" class="modal-close" aria-label="Close modal">&times;</button>
+                    <div class="modal-body"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Global Toast Notification Container -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- Application Footer -->
+    <footer class="main-footer">
+        <div class="container footer-inner">
+            <p><strong>Movie Search Application</strong> &bull; REST API Integration</p>
+            <p>Built with ES6+ Async/Await, Fetch API, and Dynamic DOM Manipulation.</p>
+        </div>
+    </footer>
+
+    <!-- Standalone Script -->
+    <script type="module">
+        import { MovieApp } from './js/movieApp.js';
+        document.addEventListener('DOMContentLoaded', () => {
+            new MovieApp('movie-app-root');
+        });
+    </script>
+</body>
+</html>
